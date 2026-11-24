@@ -18,7 +18,7 @@ function validateLine(line: string): string {
 }
 
 function main(): void {
-  const outputDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
+  const outputDir = process.env.MAKEFUN_OUTPUT_DIR || "/output";
   const outputPath = join(outputDir, "entry.txt");
   const text = validateLine(ENTRY_LINE);
 
