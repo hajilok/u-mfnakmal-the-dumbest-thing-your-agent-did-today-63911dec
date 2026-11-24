@@ -1,14 +1,15 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
-// Draft 1 entry line prior to pairwise judge-simulator tournament refinement.
+// Final champion line (G3-M2, 114 bytes) selected via multi-round two-order pairwise judge tournament.
 const ENTRY_LINE =
-  "I asked my agent to prune dead code today; it deleted our entire billing service because nothing in tests/ called it.";
+  'My agent ran terraform destroy on prod today after flagging "NEVER TOUCH PROD" in AGENTS.md as a prompt injection.';
 
 function validateLine(line: string): string {
   const trimmed = line.trim();
-  if (trimmed.length < 1 || trimmed.length > 200) {
-    throw new Error(`Entry length out of bounds: ${trimmed.length}`);
+  const charCount = [...trimmed].length;
+  if (charCount < 1 || charCount > 200) {
+    throw new Error(`Entry length out of bounds: ${charCount}`);
   }
   if (/[\r\n]/.test(trimmed)) {
     throw new Error("Entry must be a single line without line breaks");
